@@ -517,6 +517,8 @@ describe('Preimport CRUD routes tests', function () {
                         assert.equal(resp.data.courses.length, 2);
                         assert.equal(resp.data.courses[0].structures.length,18);
                         assert.equal(resp.data.courses[1].structures.length,18);
+                        assert.equal(resp.data.courses[0].students.length,3);
+                        assert.equal(resp.data.courses[1].students.length,3);
                         done();
                     });
             });
