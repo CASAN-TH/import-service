@@ -82,32 +82,32 @@ describe('Preimport CRUD routes tests', function () {
                         "__rowNum__": 5
                     },
                     {
-                        "_EMPTY_1": "หน่วยกิต",
-                        "_EMPTY_2": 1.5,
-                        "_EMPTY_3": 1.5,
-                        "_EMPTY_4": 1.5,
-                        "_EMPTY_5": 1.5,
-                        "_EMPTY_6": 0.5,
-                        "_EMPTY_7": 1,
-                        "_EMPTY_8": 1,
-                        "_EMPTY_9": 1,
-                        "_EMPTY_10": 1.5,
-                        "_EMPTY_11": 11,
-                        "_EMPTY_12": 0.5,
-                        "_EMPTY_13": 0.5,
-                        "_EMPTY_14": 0.5,
-                        "_EMPTY_15": 0.5,
-                        "_EMPTY_17": 0.5,
-                        "_EMPTY_19": 2.5,
-                        "_EMPTY_20": 13.5,
-                        "_EMPTY_30": "ไทย",
-                        "_EMPTY_31": "คณิต",
-                        "_EMPTY_32": "วิทย์",
-                        "_EMPTY_33": "สังคม",
-                        "_EMPTY_34": "สุขศึกษา",
-                        "_EMPTY_35": "ศิลปะ",
-                        "_EMPTY_36": "การงานฯ",
-                        "_EMPTY_37": "อังกฤษ",
+                        "__EMPTY_1": "หน่วยกิต",
+                        "__EMPTY_2": 1.5,
+                        "__EMPTY_3": 1.5,
+                        "__EMPTY_4": 1.5,
+                        "__EMPTY_5": 1.5,
+                        "__EMPTY_6": 0.5,
+                        "__EMPTY_7": 1,
+                        "__EMPTY_8": 1,
+                        "__EMPTY_9": 1,
+                        "__EMPTY_10": 1.5,
+                        "__EMPTY_11": 11,
+                        "__EMPTY_12": 0.5,
+                        "__EMPTY_13": 0.5,
+                        "__EMPTY_14": 0.5,
+                        "__EMPTY_15": 0.5,
+                        "__EMPTY_17": 0.5,
+                        "__EMPTY_19": 2.5,
+                        "__EMPTY_20": 13.5,
+                        "__EMPTY_30": "ไทย",
+                        "__EMPTY_31": "คณิต",
+                        "__EMPTY_32": "วิทย์",
+                        "__EMPTY_33": "สังคม",
+                        "__EMPTY_34": "สุขศึกษา",
+                        "__EMPTY_35": "ศิลปะ",
+                        "__EMPTY_36": "การงานฯ",
+                        "__EMPTY_37": "อังกฤษ",
                         "__rowNum__": 6
                     },
                     {
@@ -305,32 +305,32 @@ describe('Preimport CRUD routes tests', function () {
                         "__rowNum__": 5
                     },
                     {
-                        "_EMPTY_1": "หน่วยกิต",
-                        "_EMPTY_2": 1.5,
-                        "_EMPTY_3": 1.5,
-                        "_EMPTY_4": 1.5,
-                        "_EMPTY_5": 1.5,
-                        "_EMPTY_6": 0.5,
-                        "_EMPTY_7": 1,
-                        "_EMPTY_8": 1,
-                        "_EMPTY_9": 1,
-                        "_EMPTY_10": 1.5,
-                        "_EMPTY_11": 11,
-                        "_EMPTY_12": 0.5,
-                        "_EMPTY_13": 0.5,
-                        "_EMPTY_14": 0.5,
-                        "_EMPTY_15": 0.5,
-                        "_EMPTY_17": 0.5,
-                        "_EMPTY_19": 2.5,
-                        "_EMPTY_20": 13.5,
-                        "_EMPTY_30": "ไทย",
-                        "_EMPTY_31": "คณิต",
-                        "_EMPTY_32": "วิทย์",
-                        "_EMPTY_33": "สังคม",
-                        "_EMPTY_34": "สุขศึกษา",
-                        "_EMPTY_35": "ศิลปะ",
-                        "_EMPTY_36": "การงานฯ",
-                        "_EMPTY_37": "อังกฤษ",
+                        "__EMPTY_1": "หน่วยกิต",
+                        "__EMPTY_2": 1.5,
+                        "__EMPTY_3": 1.5,
+                        "__EMPTY_4": 1.5,
+                        "__EMPTY_5": 1.5,
+                        "__EMPTY_6": 0.5,
+                        "__EMPTY_7": 1,
+                        "__EMPTY_8": 1,
+                        "__EMPTY_9": 1,
+                        "__EMPTY_10": 1.5,
+                        "__EMPTY_11": 11,
+                        "__EMPTY_12": 0.5,
+                        "__EMPTY_13": 0.5,
+                        "__EMPTY_14": 0.5,
+                        "__EMPTY_15": 0.5,
+                        "__EMPTY_17": 0.5,
+                        "__EMPTY_19": 2.5,
+                        "__EMPTY_20": 13.5,
+                        "__EMPTY_30": "ไทย",
+                        "__EMPTY_31": "คณิต",
+                        "__EMPTY_32": "วิทย์",
+                        "__EMPTY_33": "สังคม",
+                        "__EMPTY_34": "สุขศึกษา",
+                        "__EMPTY_35": "ศิลปะ",
+                        "__EMPTY_36": "การงานฯ",
+                        "__EMPTY_37": "อังกฤษ",
                         "__rowNum__": 6
                     },
                     {
@@ -478,7 +478,7 @@ describe('Preimport CRUD routes tests', function () {
         done();
     });
 
-    xit('should be Preimport get use token', (done) => {
+    it('should be Preimport get use token', (done) => {
         request(app)
             .get('/api/preimports')
             .set('Authorization', 'Bearer ' + token)
@@ -514,7 +514,9 @@ describe('Preimport CRUD routes tests', function () {
                         }
                         var resp = res.body;
                         assert.equal(resp.status, 200);
-                        assert.equal(resp.data.name, mockup.name);
+                        assert.equal(resp.data.courses.length, 2);
+                        assert.equal(resp.data.courses[0].structures.length,18);
+                        assert.equal(resp.data.courses[1].structures.length,18);
                         done();
                     });
             });
