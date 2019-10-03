@@ -7,7 +7,7 @@ module.exports = function (app) {
     var urlWithParam = '/api/preimports/:preimportId';
     app.route(url).all(policy.isAllowed)
         .get(controller.getList)
-        .post(controller.create);
+        .post(controller.getCourseInfo,controller.create);
 
     app.route(urlWithParam).all(policy.isAllowed)
         .get(controller.read)
