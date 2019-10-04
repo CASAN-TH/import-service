@@ -33,6 +33,7 @@ exports.getList = function (req, res) {
 
 exports.getCourseInfo = function (req, res, next) {
     var courses = [];
+    var summary = [];
     req.body.forEach(course => {
 
         var key = Object.keys(course.data[1])[0];
@@ -115,10 +116,25 @@ exports.getCourseInfo = function (req, res, next) {
             students: [],
             school: req.user.ref1
         });
+        summary.push({
+            year: educate_year_num,
+            seq: arrClass.indexOf(class_room) + 1 > 6 ?
+                arrClass.indexOf(class_room) + 1 > 9 ? arrClassSeq2.indexOf(class_room + " " + term) + 5 : arrClassSeq2.indexOf(class_room + " " + term) + 1
+                : arrClassSeq1.indexOf(class_room) + 1,
+            grade: arrClass.indexOf(class_room) + 1,
+            name: educate_year + " ระดับชั้น" + class_room + " " + term,
+            structures: {
+                basic: 0,
+                advance: 0,
+                activity: 0
+            },
+            students: 0
+        })
     });
 
     req.data = {
-        courses: courses
+        courses: courses,
+        summary: summary
     };
     next();
 }
@@ -165,6 +181,7 @@ exports.getCourseStructure = function (req, res, next) {
                             }
                             // console.log(subject);
                             req.data.courses[idx].structures.push(subject);
+                            req.data.summary[idx].structures.basic += subject.weight;
                         }
                     }
                 } else if (cnt === 2) {
@@ -182,6 +199,7 @@ exports.getCourseStructure = function (req, res, next) {
                             }
                             // console.log(subject);
                             req.data.courses[idx].structures.push(subject);
+                            req.data.summary[idx].structures.advance += subject.weight;
                         }
 
                     }
@@ -197,6 +215,7 @@ exports.getCourseStructure = function (req, res, next) {
                     }
                     // console.log(subject);
                     req.data.courses[idx].structures.push(subject);
+                    req.data.summary[idx].structures.activity += 1;
                 }
 
             }
@@ -226,7 +245,7 @@ exports.getCourceStudent = function (req, res, next) {
                             // studentFirstName = arrFL[0];
                             // studentLastName = sarrFL[1];
                             var student = {
-                                seq: req.data.courses[idx].students.length+1,
+                                seq: req.data.courses[idx].students.length + 1,
                                 student_id: row["__EMPTY"],
                                 title: studentTitleName,
                                 firstname: arrFL[0],
@@ -245,8 +264,13 @@ exports.getCourceStudent = function (req, res, next) {
 
             }
         })
+        req.data.summary[idx].students = req.data.courses[idx].students.length;
         idx++;
     });
+    next();
+}
+
+exports.getTranscript = function (req, res, next) {
     next();
 }
 

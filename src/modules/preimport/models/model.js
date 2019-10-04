@@ -91,6 +91,20 @@ var PreimportSchema = new Schema({
         }],
         school: String
     }],
+    summary: [
+        {
+            year: String,
+            seq: String,
+            grade: String,
+            name: String,
+            structures: {
+                basic: Number,
+                advance: Number,
+                activity: Number
+            },
+            students: Number
+        }
+    ],
     created: {
         type: Date,
         default: Date.now

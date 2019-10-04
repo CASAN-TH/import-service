@@ -519,6 +519,17 @@ describe('Preimport CRUD routes tests', function () {
                         assert.equal(resp.data.courses[1].structures.length,18);
                         assert.equal(resp.data.courses[0].students.length,3);
                         assert.equal(resp.data.courses[1].students.length,3);
+                        //console.log(resp.data.summary[0]);
+                        //structures: { basic: 11, advance: 2.5, activity: 4 }
+                        assert.equal(resp.data.summary.length, 2);
+                        assert.equal(resp.data.summary[0].structures.basic, 11);
+                        assert.equal(resp.data.summary[0].structures.advance, 2.5);
+                        assert.equal(resp.data.summary[0].structures.activity, 4);
+                        assert.equal(resp.data.summary[0].students, 3);
+                        assert.equal(resp.data.summary[1].structures.basic, 11);
+                        assert.equal(resp.data.summary[1].structures.advance, 2.5);
+                        assert.equal(resp.data.summary[1].structures.activity, 4);
+                        assert.equal(resp.data.summary[1].students, 3);
                         done();
                     });
             });
